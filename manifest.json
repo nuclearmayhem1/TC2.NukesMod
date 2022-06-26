@@ -1,0 +1,23 @@
+{
+  "version": "0.1.44.0",
+  "guid": "f7c1b854-642f-4247-9fd0-64ca0bdd1945",
+  "identifier": "TC2.NukesMod",
+  "name": "Nuke's Mod",
+  "description": "A mod by nuke",
+  "url": "https://github.com/TFlippy/TC2.Frontier",
+  "git": "https://github.com/TFlippy/TC2.Frontier.git",
+  "authors": [
+    "NuclearMayhem"
+  ],
+  "dependencies": [
+    {
+      "identifier": "TC2.Core",
+      "required": true
+    },
+    {
+      "identifier": "TC2.Base",
+      "required": true
+    }
+  ],
+  "tags": []
+}
