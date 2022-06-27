@@ -1,0 +1,314 @@
+$tags: []
+
+body:
+{
+	type: static
+	
+	@shape.box:
+	{
+		size: [7.000, 5.000]
+		offset: [0.000, 0.000]
+		mass: 5000.000
+		friction: 0.500
+		elasticity: 0.500
+		material: stone
+		layer: entity, building, support, ignore_melee, storage
+		mask: world
+	}
+}
+
+health:
+{
+	max: 25000.000
+}
+
+animated.renderer:
+{
+	sprite:
+	{
+		texture: "forge"
+	}
+	z: -300.000
+}
+
+transform:
+{
+
+}
+
+building:
+{
+
+}
+
+interactable:
+{
+	window_size: [300.000, 100.000]
+}
+
+control:
+{
+
+}
+
+vehicle:
+{
+
+}
+
+axle:
+{
+	offset: [0.000, 0.000]
+	mass: 5.000
+	friction: 0.800
+	radius_a: 1.000
+	radius_b: 1.000
+	radius_inner: 0.750
+	radius_outer: 1.000
+	
+	@animated.renderer:
+	{
+		sprite:
+		{
+			texture: "wheel_1000.iron"
+		}
+		z: -50.000
+	}
+}
+
++seat|instance:
+{
+	$tags: []
+	
+	seat:
+	{
+		offset: [-2.125, 0.750]
+	}
+}
+
++slot|instance:
+{
+	joint.base:
+	{
+		offset_a: [0.000, 0.000]
+		max_force: 100000.000
+		max_torque: 200000.000
+		flags: control_write, no_stress, no_wrap, force_facing
+		
+		@sound.emitter:
+		{
+			file: "attachment_rotate_loop_00"
+			volume: 0.000
+			pitch: 1.000
+		}
+		
+		@sound.mixer:
+		{
+			volume_modifier: 1.200
+			pitch_modifier: 0.250
+			volume_min: 0.000
+			pitch_min: 0.700
+			volume_lerp_a: 0.020
+			volume_lerp_b: 0.100
+			pitch_lerp_a: 0.040
+			pitch_lerp_b: 0.010
+		}
+	}
+
+	joint.pivot:
+	{
+		max_bias: 8.000
+	}
+
+	joint.gear:
+	{
+		min: -2.500
+		max: 0.750
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	+barrel|child:
+	{
+		$tags: []
+
+		body:
+		{
+			@shape.line:
+			{
+				a: [-2.500, 0.000]
+				b: [2.500, 0.000]
+				mass: 150.000
+				radius: 0.400
+				friction: 0.900
+				elasticity: 0.250
+				material: metal
+				layer: entity, solid, ignore_bullet, ignore_melee, item
+				mask: world
+			}
+		}
+
+		gun:
+		{
+			muzzle_offset: [2.500, 0.000]
+			sound_shoot: "autocannon_shoot"
+			sound_reload: "cannon_reload"
+			velocity_multiplier: 900.000
+			jitter_multiplier: 0.500
+			damage_multiplier: 7.000
+			recoil_multiplier: 30.000
+			reload_interval: 3.000
+			cycle_interval: 0.250
+			failure_rate: 0.002
+			max_ammo: 30.000
+			sound_volume: 3.000
+			sound_size: 2.500
+			projectile_count: 1
+			flags: automatic, full_reload, cycle_on_shoot
+			ammo_filter: ammo_ac
+			action: blowback
+			type: autocannon
+			feed: magazine
+
+			shake_amount: 0.600
+		
+			@inventory1:
+			{
+				name: "Ammo"
+				stack_size_multiplier: 1.000
+				type: ammo
+				flags: hidden
+			}
+		
+			@light:
+			{
+				color: [1.000, 0.400, 0.100, 4.000]
+				offset: [2.000, 0.000]
+				scale: [40.000, 30.000]
+				intensity: 0.000
+				texture: "light_invsqr"
+			}
+		}
+
+		gun.state:
+		{
+
+		}
+
+		animated.renderer:
+		{
+			sprite:
+			{
+				texture: "autocannon"
+			}
+		}
+
+		health:
+		{
+			max: 13000.000
+		}
+
+		transform:
+		{
+
+		}
+
+		deletewithparent:
+		{
+		
+		}
+	}
+}
+
++powder1|instance:
+{
+	attachment:
+	{
+
+	}
+	
+	joint.base:
+	{
+		offset_a: [-4.000, 2.000]
+		max_force: 1000000.000
+		max_torque: 10000.000
+		flags: no_wrap, no_stress, control_write, force_facing
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.rotarylimit:
+	{
+		max_torque: 100000.000
+		min: 0
+		max: 0
+		max_bias: 20.000
+		error_bias: 0.0001
+	}
+}
+
++powder2|instance:
+{
+	attachment:
+	{
+
+	}
+
+	joint.base:
+	{
+		offset_a: [-6.000, 2.000]
+		max_force: 1000000.000
+		max_torque: 10000.000
+		flags: no_wrap, no_stress, control_write, force_facing
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.rotarylimit:
+	{
+		max_torque: 100000.000
+		min: 0
+		max: 0
+		max_bias: 20.000
+		error_bias: 0.0001
+	}
+}
+
++shell|instance:
+{
+	attachment:
+	{
+
+	}
+
+	joint.base:
+	{
+		offset_a: [-8.000, 2.000]
+		max_force: 1000000.000
+		max_torque: 10000.000
+		flags: no_wrap, no_stress, control_write, force_facing
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.rotarylimit:
+	{
+		max_torque: 100000.000
+		min: 0
+		max: 0
+		max_bias: 20.000
+		error_bias: 0.0001
+	}
+}
