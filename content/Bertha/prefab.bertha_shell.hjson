@@ -6,9 +6,9 @@ body:
 	
 	@shape.box:
 	{
-		size: [3.000, 1.700]
+		size: [4.000, 2.000]
 		offset: [0.000, 0.000]
-		mass: 40.000
+		mass: 1000.000
 		friction: 0.950
 		elasticity: 0.500
 		material: wood
@@ -32,7 +32,7 @@ animated.renderer:
 {
 	sprite:
 	{
-		texture: "crate"
+		texture: "bertha_shell"
 	}
 	z: 10.000
 }

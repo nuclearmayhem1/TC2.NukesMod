@@ -6,7 +6,7 @@ body:
 	
 	@shape.box:
 	{
-		size: [7.000, 5.000]
+		size: [14.000, 10.500]
 		offset: [0.000, 0.000]
 		mass: 5000.000
 		friction: 0.500
@@ -26,7 +26,7 @@ animated.renderer:
 {
 	sprite:
 	{
-		texture: "forge"
+		texture: "bertha"
 	}
 	z: -300.000
 }
@@ -46,19 +46,9 @@ interactable:
 	window_size: [300.000, 100.000]
 }
 
-control:
-{
-
-}
-
-vehicle:
-{
-
-}
-
 axle:
 {
-	offset: [0.000, -2.000]
+	offset: [-5.250, 1.000]
 	mass: 5.000
 	friction: 0.800
 	radius_a: 1.000
@@ -76,21 +66,31 @@ axle:
 	}
 }
 
-+seat|instance:
+bertha:
 {
-	$tags: []
-	
-	seat:
-	{
-		offset: [-2.125, 0.750]
-	}
+
+}
+
+bertha.state:
+{
+	isLoaded: false
+}
+
+vehicle:
+{
+
 }
 
 +slot|instance:
 {
+	$tags: 
+	[
+		"turret"
+	]
+
 	joint.base:
 	{
-		offset_a: [0.000, 0.000]
+		offset_a: [-1.500, -4.000]
 		max_force: 100000.000
 		max_torque: 200000.000
 		flags: control_write, no_stress, no_wrap, force_facing
@@ -122,24 +122,27 @@ axle:
 
 	joint.gear:
 	{
-		min: -2.500
-		max: 0.750
+		min: -0.750
+		max: 0.250
 		error_bias: 0.050
 		max_bias: 0.700
 	}
 
 	+barrel|child:
 	{
-		$tags: []
+		$tags:
+		[
+			"barrel"
+		]
 
 		body:
 		{
 			@shape.line:
 			{
-				a: [-2.500, 0.000]
-				b: [2.500, 0.000]
+				a: [0.500, 0.000]
+				b: [20.000, 0.000]
 				mass: 150.000
-				radius: 0.400
+				radius: 1.000
 				friction: 0.900
 				elasticity: 0.250
 				material: metal
@@ -165,7 +168,7 @@ axle:
 			sound_size: 2.500
 			projectile_count: 1
 			flags: automatic, full_reload, cycle_on_shoot
-			ammo_filter: ammo_ac
+			ammo_filter: ammo_shell
 			action: blowback
 			type: autocannon
 			feed: magazine
@@ -199,8 +202,10 @@ axle:
 		{
 			sprite:
 			{
-				texture: "autocannon"
+				texture: "bertha_barrel"
 			}
+			z: -500.000
+			offset: [8.500,0.000]
 		}
 
 		health:
@@ -226,7 +231,7 @@ axle:
 	{
 		name: powder bag 1
 	}
-	
+
 	joint.base:
 	{
 		offset_a: [-4.000, 2.000]
