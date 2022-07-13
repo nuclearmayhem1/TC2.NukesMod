@@ -28,6 +28,21 @@ namespace TC2.Base.Components
         }
 
 
+        public struct ConfigureRPC : Net.IRPC<Bertha.State>
+        {
+            public bool isLoaded;
+
+#if SERVER
+            public void Invoke(ref NetConnection connection, Entity entity, ref Bertha.State data)
+            {
+                data.isLoaded = this.isLoaded;
+
+                data.Sync(entity);
+            }
+#endif
+        }
+
+
         [ISystem.EarlyUpdate(ISystem.Mode.Single), HasTag("turret", true, Source.Modifier.Owned)]
         public static void Update([Source.Owned, Original] ref Joint.Gear gear, [Source.Shared] ref Axle.State axle, [Source.Shared] ref Bertha.Data data)
 		{
@@ -73,7 +88,13 @@ namespace TC2.Base.Components
                                         App.WriteLine("test1");
                                         if (!bertha_state.isLoaded)
                                         {
-                                            bertha_state.isLoaded = true;
+
+                                            var rpc = new Bertha.ConfigureRPC
+                                            {
+                                                isLoaded = true
+                                            };
+                                            rpc.Send(this.ent_bertha);
+
                                             App.WriteLine("loaded bertha");
                                         }
                                     }
@@ -114,16 +135,16 @@ namespace TC2.Base.Components
             }
         }
 
-        [ISystem.EarlyGUI(ISystem.Mode.Single), HasTag("barrel", true, Source.Modifier.Owned)]
-        public static void OnGUI(ISystem.Info info, Entity entity,
-            [Source.Shared] ref Bertha.State state,
-            [Source.Owned] ref Gun.Data gun, [Source.Owned, Pair.Of<Gun.Data>] ref Inventory1.Data inventory_magazine, [Source.Owned] ref Gun.State gun_state)
+        [ISystem.EarlyGUI(ISystem.Mode.Single)]
+        public static void OnGUI(ISystem.Info info, Entity ent_interactable, [Source.Parent] in Interactable.Data interactable,
+            [Source.Parent] ref Bertha.State state,
+            [Source.Owned] ref Gun.Data gun, [Source.Owned] ref Gun.State gun_state, [Source.Owned, Pair.Of<Gun.Data>] ref Inventory1.Data inventory_magazine)
         {
             if (interactable.show)
             {
                 var gui = new BerthaGUI()
                 {
-                    ent_bertha = entity,
+                    ent_bertha = ent_interactable,
                     bertha_state = state,
                     gun_state = gun_state,
                     inventory = inventory_magazine

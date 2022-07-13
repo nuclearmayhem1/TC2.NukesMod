@@ -130,10 +130,7 @@ vehicle:
 
 	+barrel|child:
 	{
-		$tags:
-		[
-			"barrel"
-		]
+		$tags: []
 
 		body:
 		{
