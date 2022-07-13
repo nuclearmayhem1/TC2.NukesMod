@@ -46,7 +46,6 @@ namespace TC2.Base.Components
         {
             public Entity ent_bertha;
             public Bertha.State bertha_state;
-            public Transform.Data transform;
             public Gun.State gun_state;
             public Inventory1.Data inventory;
             public void Draw()
@@ -126,7 +125,6 @@ namespace TC2.Base.Components
                 {
                     ent_bertha = entity,
                     bertha_state = state,
-                    transform = transform,
                     gun_state = gun_state,
                     inventory = inventory_magazine
                 };
