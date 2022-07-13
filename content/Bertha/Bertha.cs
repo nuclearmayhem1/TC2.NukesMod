@@ -31,16 +31,18 @@ namespace TC2.Base.Components
         public struct ConfigureRPC : Net.IRPC<Bertha.State>
         {
             public bool isLoaded;
+            public Gun.Stage gunStage;
 
 #if SERVER
             public void Invoke(ref NetConnection connection, Entity entity, ref Bertha.State data)
             {
+                //entity.GetComponent<Gun.State>().Stage = gunStage;
                 data.isLoaded = this.isLoaded;
-
                 data.Sync(entity);
             }
 #endif
         }
+
 
 
         [ISystem.EarlyUpdate(ISystem.Mode.Single), HasTag("turret", true, Source.Modifier.Owned)]
@@ -61,7 +63,6 @@ namespace TC2.Base.Components
         {
             public Entity ent_bertha;
             public Bertha.State bertha_state;
-            public Gun.State gun_state;
             public Inventory1.Data inventory;
             public void Draw()
             {
