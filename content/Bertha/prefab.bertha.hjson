@@ -76,6 +76,11 @@ bertha.state:
 	isLoaded: false
 }
 
+control:
+{
+
+}
+
 vehicle:
 {
 
@@ -91,8 +96,8 @@ vehicle:
 	joint.base:
 	{
 		offset_a: [-1.500, -4.000]
-		max_force: 100000.000
-		max_torque: 200000.000
+		max_force: 100000000.000
+		max_torque: 200000000.000
 		flags: control_write, no_stress, no_wrap, force_facing
 		
 		@sound.emitter:
@@ -128,6 +133,13 @@ vehicle:
 		max_bias: 0.700
 	}
 
+	attachment:
+	{
+		name: "Mount"
+
+		flags: keyboard_write, mouse_write
+	}
+
 	+barrel|child:
 	{
 		$tags: []
@@ -138,7 +150,7 @@ vehicle:
 			{
 				a: [0.500, 0.000]
 				b: [20.000, 0.000]
-				mass: 150.000
+				mass: 500.000
 				radius: 1.000
 				friction: 0.900
 				elasticity: 0.250
@@ -150,28 +162,31 @@ vehicle:
 
 		gun:
 		{
-			muzzle_offset: [2.500, 0.000]
-			sound_shoot: "autocannon_shoot"
+			muzzle_offset: [17.000, 0.000]
+			sound_shoot: "cannon_shoot"
 			sound_reload: "cannon_reload"
-			velocity_multiplier: 900.000
-			jitter_multiplier: 0.500
-			damage_multiplier: 7.000
-			recoil_multiplier: 30.000
-			reload_interval: 3.000
-			cycle_interval: 0.250
-			failure_rate: 0.002
-			max_ammo: 30.000
-			sound_volume: 3.000
-			sound_size: 2.500
+			velocity_multiplier: 150.000
+			jitter_multiplier: 0.300
+			damage_multiplier: 25.000
+			recoil_multiplier: 300.000
+			reload_interval: 3.500
+			cycle_interval: 0.500
+			failure_rate: 0.000
+			max_ammo: 1.000
+			sound_volume: 5.000
+			sound_size: 7.000
+			smoke_size: 10.000
+			smoke_amount: 6
+			flash_size: 2.000
 			projectile_count: 1
-			flags: automatic, full_reload, cycle_on_shoot
+			flags: full_reload, cycle_on_shoot
 			ammo_filter: ammo_shell
-			action: blowback
-			type: autocannon
-			feed: magazine
+			action: manual
+			type: cannon
+			feed: single
 
-			shake_amount: 0.600
-		
+			shake_amount: 0.900
+			
 			@inventory1:
 			{
 				name: "Ammo"
@@ -179,18 +194,28 @@ vehicle:
 				type: ammo
 				flags: hidden
 			}
-		
+			
 			@light:
 			{
 				color: [1.000, 0.400, 0.100, 4.000]
-				offset: [2.000, 0.000]
-				scale: [40.000, 30.000]
+				offset: [4.000, -0.250]
+				scale: [50.000, 50.000]
 				intensity: 0.000
 				texture: "light_invsqr"
 			}
 		}
 
 		gun.state:
+		{
+
+		}
+
+		control:
+		{
+
+		}
+
+		attachable:
 		{
 
 		}

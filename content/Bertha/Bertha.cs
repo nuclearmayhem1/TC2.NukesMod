@@ -27,21 +27,39 @@ namespace TC2.Base.Components
             }
         }
 
-
         public struct ConfigureRPC : Net.IRPC<Bertha.State>
         {
-            public bool isLoaded;
-            public Gun.Stage gunStage;
-
+            public bool fire;
+            public bool load;
 #if SERVER
             public void Invoke(ref NetConnection connection, Entity entity, ref Bertha.State data)
             {
-                //entity.GetComponent<Gun.State>().Stage = gunStage;
-                data.isLoaded = this.isLoaded;
+
+                ref var control = ref entity.GetComponent<Control.Data>();
+                control.mouse.SetKeyPressed(Mouse.Key.Left, true);
+
+                if (this.load)
+                {
+                    if (!data.isLoaded)
+                    {
+                        data.isLoaded = true;
+                        control.keyboard.SetKeyPressed(Keyboard.Key.Reload, true);
+                    }
+                    this.load = false;
+                }
+                else if (this.fire)
+                {
+                    control.mouse.SetKeyPressed(Mouse.Key.Left, true);
+                    fire = false;
+                }
+
+
                 data.Sync(entity);
+                control.Sync(entity);
             }
 #endif
         }
+
 
 
 
@@ -64,6 +82,8 @@ namespace TC2.Base.Components
             public Entity ent_bertha;
             public Bertha.State bertha_state;
             public Inventory1.Data inventory;
+            public Gun.State gun_state;
+
             public void Draw()
             {
                 using (var window = GUI.Window.Interaction("Bertha", this.ent_bertha))
@@ -92,7 +112,7 @@ namespace TC2.Base.Components
 
                                             var rpc = new Bertha.ConfigureRPC
                                             {
-                                                isLoaded = true
+                                                load = true
                                             };
                                             rpc.Send(this.ent_bertha);
 
@@ -118,7 +138,13 @@ namespace TC2.Base.Components
                                     if (button.pressed)
                                     {
                                         App.WriteLine("test2");
-                                        gun_state.stage = Gun.Stage.Fired;
+
+                                        var rpc = new Bertha.ConfigureRPC
+                                        {
+                                            fire = true
+                                        };
+                                        rpc.Send(this.ent_bertha);
+
                                     }
 
                                     if (button.hovered)
@@ -147,7 +173,6 @@ namespace TC2.Base.Components
                 {
                     ent_bertha = ent_interactable,
                     bertha_state = state,
-                    gun_state = gun_state,
                     inventory = inventory_magazine
                 };
                 gui.Submit();

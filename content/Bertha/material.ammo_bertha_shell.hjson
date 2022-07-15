@@ -4,7 +4,7 @@
 
 	icon:
 	{
-		texture: "resource.ammo_shell"
+		texture: "bertha_shell"
 		size: [16, 16]
 		frame: [0, 0]
 	}
@@ -20,13 +20,13 @@
 	flags: manufactured, ammo, ammo_shell
 	mass_per_unit: 10.000
 	quantity_max: 1.000
-	prefab: "resource.ammo_shell"
+	prefab: "resource.ammo_bertha_shell"
 	
 	projectile_count: 1
-	projectile_speed_mult: 1.000
+	projectile_speed_mult: 1
 	projectile_spread_mult: 1.000
 	projectile_heat: 4000.000
-	projectile_prefab: "projectile.shell"
+	projectile_prefab: "projectile.bertha_shell"
 	
 	fuel_energy: 0.000
 	fuel_drain: 1.000
