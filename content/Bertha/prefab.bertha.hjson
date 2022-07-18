@@ -43,7 +43,7 @@ building:
 
 interactable:
 {
-	window_size: [300.000, 100.000]
+	window_size: [500.000, 100.000]
 }
 
 axle:
@@ -68,13 +68,26 @@ axle:
 
 bertha:
 {
+	
+}
 
+storage:
+{
+	@inventory1:
+	{
+		name: "Ammo"
+		stack_size_multiplier: 1.000
+		type: ammo
+		flags: hidden
+	}
 }
 
 bertha.state:
 {
 	isLoaded: false
 }
+
+
 
 control:
 {
@@ -84,6 +97,211 @@ control:
 vehicle:
 {
 
+}
+
++shell_slot|instance:
+{
+	attachment:
+	{
+		name: "Warhead"
+	}
+
+	joint.base:
+	{
+		offset_a: [-0.500, 0.000]
+		max_force: 10000000.000
+		max_torque: 10000000.000
+		flags: no_stress, no_wrap, force_facing
+		z: -109.000
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.gear:
+	{
+		min: -0.000
+		max: 0.000
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	joint.rotarylimit:
+	{
+	max_torque: 100000.000
+	min: -0
+	max: 0
+	max_bias: 20.000
+	error_bias: 0.0001
+	}
+	
+}
+
++powder_slot1|instance:
+{
+	attachment:
+	{
+		name: "Powderbag 1"
+	}
+
+	joint.base:
+	{
+		offset_a: [-0.500, 0.000]
+		max_force: 10000000.000
+		max_torque: 10000000.000
+		flags: no_stress, no_wrap, force_facing
+		z: -109.000
+	}
+	
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.gear:
+	{
+		min: -0.000
+		max: 0.000
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	joint.rotarylimit:
+	{
+	max_torque: 100000.000
+	min: -0
+	max: 0
+	max_bias: 20.000
+	error_bias: 0.0001
+	}
+	
+}
+
++powder_slot2|instance:
+{
+	attachment:
+	{
+		name: "Powderbag 2"
+	}
+
+	joint.base:
+	{
+		offset_a: [-0.500, 0.000]
+		max_force: 10000000.000
+		max_torque: 10000000.000
+		flags: no_stress, no_wrap, force_facing
+		z: -109.000
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.gear:
+	{
+		min: -0.000
+		max: 0.000
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	joint.rotarylimit:
+	{
+	max_torque: 100000.000
+	min: -0
+	max: 0
+	max_bias: 20.000
+	error_bias: 0.0001
+	}
+	
+}
+
++powder_slot3|instance:
+{
+	attachment:
+	{
+		name: "Powderbag 3"
+	}
+
+	joint.base:
+	{
+		offset_a: [-0.500, 0.000]
+		max_force: 10000000.000
+		max_torque: 10000000.000
+		flags: no_stress, no_wrap, force_facing
+		z: -109.000
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.gear:
+	{
+		min: -0.000
+		max: 0.000
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	joint.rotarylimit:
+	{
+	max_torque: 100000.000
+	min: -0
+	max: 0
+	max_bias: 20.000
+	error_bias: 0.0001
+	}
+	
+}
+
++powder_slot4|instance:
+{
+	attachment:
+	{
+		name: "Powderbag 4"
+	}
+
+	joint.base:
+	{
+		offset_a: [-0.500, 0.000]
+		max_force: 10000000.000
+		max_torque: 10000000.000
+		flags: no_stress, no_wrap, force_facing
+		z: -109.000
+	}
+
+	joint.pivot:
+	{
+		error_bias: 0.01
+		max_bias: 40.000
+	}
+
+	joint.gear:
+	{
+		min: -0.000
+		max: 0.000
+		error_bias: 0.050
+		max_bias: 0.700
+	}
+
+	joint.rotarylimit:
+	{
+	max_torque: 100000.000
+	min: -0
+	max: 0
+	max_bias: 20.000
+	error_bias: 0.0001
+	}
+	
 }
 
 +slot|instance:
@@ -137,7 +355,7 @@ vehicle:
 	{
 		name: "Mount"
 
-		flags: keyboard_write, mouse_write
+		flags: keyboard_write, mouse_write, locked
 	}
 
 	+barrel|child:
@@ -244,98 +462,5 @@ vehicle:
 		{
 		
 		}
-	}
-}
-
-+powder1|instance:
-{
-	attachment:
-	{
-		name: powder bag 1
-	}
-
-	joint.base:
-	{
-		offset_a: [-4.000, 2.000]
-		max_force: 1000000.000
-		max_torque: 10000.000
-		flags: no_wrap, no_stress, control_write, force_facing
-	}
-
-	joint.pivot:
-	{
-		error_bias: 0.01
-		max_bias: 40.000
-	}
-
-	joint.rotarylimit:
-	{
-		max_torque: 100000.000
-		min: 0
-		max: 0
-		max_bias: 20.000
-		error_bias: 0.0001
-	}
-}
-
-+powder2|instance:
-{
-	attachment:
-	{
-		name: powder bag 2
-	}
-	
-	joint.base:
-	{
-		offset_a: [-6.000, 2.000]
-		max_force: 1000000.000
-		max_torque: 10000.000
-		flags: no_wrap, no_stress, control_write, force_facing
-	}
-
-	joint.pivot:
-	{
-		error_bias: 0.01
-		max_bias: 40.000
-	}
-
-	joint.rotarylimit:
-	{
-		max_torque: 100000.000
-		min: 0
-		max: 0
-		max_bias: 20.000
-		error_bias: 0.0001
-	}
-}
-
-+shell|instance:
-{
-	attachment:
-	{
-		name: warhead
-	}
-
-	joint.base:
-	{
-		offset_a: [-8.000, 2.000]
-		max_force: 1000000.000
-		max_torque: 10000.000
-		flags: no_wrap, no_stress, control_write, force_facing
-	}
-
-	joint.pivot:
-	{
-		error_bias: 0.01
-		max_bias: 40.000
-	}
-
-	joint.rotarylimit:
-	{
-		max_torque: 100000.000
-		min: 0
-		max: 0
-		max_bias: 20.000
-		error_bias: 0.0001
 	}
 }
