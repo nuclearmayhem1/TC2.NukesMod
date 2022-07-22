@@ -11,7 +11,7 @@ body:
 		mass: 750.000
 		friction: 0.950
 		elasticity: 0.500
-		material: wood
+		material: cloth
 		layer: entity, solid, crate, storage
 		mask: world
 	}
@@ -45,4 +45,12 @@ transform:
 attachable:
 {
 
+}
+
+explosive:
+{
+	radius: 4.000
+	power: 2.000
+	damage_entity: 5000.000
+	damage_terrain: 7500.000
 }

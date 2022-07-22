@@ -1,0 +1,63 @@
+{
+	name: "Bertha Shell (Standard)"
+	desc: "Warhead for bertha cannon."
+	
+	icon:
+	{
+		texture: "bertha_shell"
+		size: [32, 16]
+	}
+
+	icon_extra:
+	{
+		texture: "ui_icons_gunsmith.mini"
+		size: [16, 16]
+		frame: [0, 0]
+	}
+	
+	min: 1
+	max: 1
+	step: 1
+	type: workshop
+	tags: munitions
+	
+	requirements:
+	[
+		{
+			type: "resource"
+			material: "iron_ingot"
+			amount: 50.000
+		}
+		{
+			type: "resource"
+			material: "nitroglycerine"
+			amount: 750.000
+		}
+		{
+			type: "resource"
+			material: "machine_parts"
+			amount: 25.000
+		}
+		{
+			type: "work"
+			work: "smithing"
+			amount: 3000.000
+			difficulty: 15.000
+		}
+		{
+			type: "work"
+			work: "assembling"
+			amount: 1500.000
+			difficulty: 12.000
+		}
+	]
+	
+	products:
+	[
+		{
+			type: "prefab"
+			prefab: "bertha_shell"
+			amount: 1.000
+		}
+	]
+}

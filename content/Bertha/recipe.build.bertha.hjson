@@ -7,8 +7,8 @@
 	
 	icon:
 	{
-		texture: "manufactory"
-		size: [56, 40]
+		texture: "bertha"
+		size: [112, 84]
 	}
 	
 	type: build
@@ -23,7 +23,7 @@
 		type: simple
 		flags: allow_mirror_x
 		
-		size: [7.000, 5.000]
+		size: [14.000, 10.500]
 		offset: [0.000, -1.500]
 		
 		cooldown: 0.500
@@ -37,7 +37,7 @@
 	construction:
 	{
 		flags: none
-		prefab: construction.7x5
+		prefab: construction.14x10,5
 
 		requirements:
 		[
@@ -52,9 +52,36 @@
 	requirements:
 	[
 		{
-			type: resource
-			material: "wood"
+			type: "resource"
+			material: "iron_ingot"
+			amount: 1000.000
+		}
+		{
+			type: "resource"
+			material: "machine_parts"
+			amount: 400.000
+		}
+		{
+			type: "resource"
+			material: "smirgl_ingot"
 			amount: 50.000
+		}
+		{
+			type: "resource"
+			material: "iron_plate"
+			amount: 250.000
+		}
+		{
+			type: "work"
+			work: "smithing"
+			amount: 75000.000
+			difficulty: 20.000
+		}
+		{
+			type: "work"
+			work: "assembling"
+			amount: 50000.000
+			difficulty: 18.000
 		}
 	]
 	
