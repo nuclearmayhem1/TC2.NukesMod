@@ -62,7 +62,7 @@ norotate:
 
 mech:
 {
-
+	leg_reach: 5.000
 }
 
 mech.state:
@@ -99,8 +99,8 @@ mech.state:
 
 	joint.gear:
 	{
-		min: 0.500
-		max: 2.500
+		min: -2.800
+		max: 2.800
 		error_bias: 0.050
 		max_bias: 0.700
 	}
@@ -133,8 +133,8 @@ mech.state:
 
 	joint.gear:
 	{
-		min: 0.500
-		max: 2.500
+		min: -2.800
+		max: 2.800
 		error_bias: 0.050
 		max_bias: 0.700
 	}
