@@ -10,29 +10,29 @@ public static partial class Jetpack
     {
         public float thrust = 150;
         public float thrust_multiplier = 1000;
-        [Statistics.Info("Fuel capacity", "How much fuel fits into the tank at standard compression")]
+        [Statistics.Info("Fuel capacity", "How much fuel fits into the tank at standard compression", comparison: Statistics.Comparison.Higher)]
         public float fuel_base = 10;
-        [Statistics.Info("Fuel compression", "How much space 1 unit of fuel takes up in the tank")]
+        [Statistics.Info("Fuel compression", "How much space 1 unit of fuel takes up in the tank", comparison: Statistics.Comparison.Higher)]
         public float fuel_multiplier = 1;
         public float max_fuel { get { return fuel_base * fuel_multiplier; } set { } }
-        [Statistics.Info("Cooldown", "How long until next pulse")]
+        [Statistics.Info("Cooldown", "How long until next pulse", comparison: Statistics.Comparison.Lower)]
         public float cooldown = 0;
-        [Statistics.Info("Refuel cooldown", "How long you need to be grounded in order to refuel the jetpack")]
+        [Statistics.Info("Refuel cooldown", "How long you need to be grounded in order to refuel the jetpack", comparison: Statistics.Comparison.Lower)]
         public float refuel_cooldown = 10;
-        [Statistics.Info("Refuel speed", "How may units of fuel you refuel per second", format: "{0:0.##}s")]
+        [Statistics.Info("Refuel speed", "How may units of fuel you refuel per second", format: "{0:0.##}s", comparison: Statistics.Comparison.Higher)]
         public float refuel_speed = 1;
-        [Statistics.Info("Fuel efficiency", "How much fuel is used for standard thrust")]
+        [Statistics.Info("Fuel efficiency", "How much fuel is used for standard thrust", comparison: Statistics.Comparison.Lower)]
         public float efficiency = 1f;
         [Statistics.Info("Fuel usage", "How much fuel is used, thrust is directly related to fuel usage")]
         public float fuel_used = 1;
         [Statistics.Info("Control fuel usage", "How much fuel is used to manouver")]
         public float control_fuel_used = 0.1f;
-        [Statistics.Info("Control surface", "Control surfaces change the direction of your velocity for free")]
+        [Statistics.Info("Control surface", "Control surfaces change the direction of your velocity for free", comparison: Statistics.Comparison.Higher)]
         public float control_surface = 0;
         [Statistics.Info("Tank type", "What type of fuel tank is being used")]
         public TankType tank_type = TankType.Standard;
         [Statistics.Info("Operation mode", "Determines what type of flight the jetpack uses")]
-        public Operation operation = Operation.continious;
+        public Operation operation = Operation.Continious;
         public float velocityPenalty = 1.1f;
         public float air_time_threshold = 0.1f;
 
@@ -64,6 +64,7 @@ public static partial class Jetpack
         Standard,
         Cryogenic,
         Compressed,
+        Lightweight,
 
     }
 
@@ -71,9 +72,9 @@ public static partial class Jetpack
     {
         Undefined = 0,
 
-        pulse,
-        continious,
-        hover,
+        Pulse,
+        Continious,
+        Hover,
 
     }
 
@@ -108,9 +109,9 @@ public static partial class Jetpack
         {
             case Operation.Undefined:
                 break;
-            case Operation.pulse:
+            case Operation.Pulse:
                 break;
-            case Operation.continious:
+            case Operation.Continious:
 
 
 
@@ -159,7 +160,7 @@ public static partial class Jetpack
                 state.fuel -= fuelUsed;
                 body.AddForce(force);
                 break;
-            case Operation.hover:
+            case Operation.Hover:
                 break;
             default:
                 break;
